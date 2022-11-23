@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'kr.co'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+   //security 사용시 필요한 라이브러리
+   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.7.5'
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+   //jdbcTemplate 사용 시 필요한 라이브러리
+   implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+   //webapp구동 시 필요한 라이브러리(servlet에 필요)
+   implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+   //jstl사용 시 필요한 라이브러리 
+   implementation 'javax.servlet:jstl'
+   //mariadb 사용 시 필요한 라이브러리
+   implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.3'
+   //jpa 사용 시 필요한 라이브러리
+   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'   
+   developmentOnly 'org.springframework.boot:spring-boot-devtools'
+   compileOnly 'org.projectlombok:lombok'
+   annotationProcessor 'org.projectlombok:lombok'
+   testImplementation 'org.springframework.boot:spring-boot-starter-test'
+   testImplementation 'org.springframework.security:spring-security-test'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
