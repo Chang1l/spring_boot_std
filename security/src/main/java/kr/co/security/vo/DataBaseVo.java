@@ -38,8 +38,12 @@ public class DataBaseVo implements UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 	//가지고 있는 권한 가져와서 넣기 권한이 n개(두 개 이상)라면 반복문을 통해 add 하여 줍니다
 		List<GrantedAuthority> list=new ArrayList<GrantedAuthority>();
+		if(auth!=null) {
 		for(String autoOne : auth.split(",")) {
-			list.add(new SimpleGrantedAuthority(autoOne));
+			list.add(new SimpleGrantedAuthority(autoOne));//떼온 문자열
+		}
+		}else {//권한이 없을 경우 임의 문자 설정
+			list.add(new SimpleGrantedAuthority("etc"));
 		}
 		return list;
 	}
